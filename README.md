@@ -15,3 +15,8 @@ a bot develop by rasa framework. and web ui develop by steamlit
 + python - m streamlit run ./chatbot/webui.py
 
 then you can talk with the rasa ai bot
+
+
+### reference 
+
+the project cite the https://github.com/Chinese-NLP-book/rasa_chinese_book_code  
