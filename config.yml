@@ -1,0 +1,21 @@
+recipe: default.v1
+language: zh
+pipeline:
+  - name: JiebaTokenizer
+  - name: LanguageModelFeaturizer
+    model_name: bert
+    model_weights: bert-base-chinese
+  - name: RegexFeaturizer
+  - name: DIETClassifier
+    epochs: 100
+    learning_rate: 0.001
+    tensorboard_log_directory: ./log
+  - name: ResponseSelector
+    epochs: 100
+    learning_rate: 0.001
+  - name: EntitySynonymMapper
+policies:
+  - name: RulePolicy
+    core_fallback_threshold: 0.6
+    core_fallback_action_name: "action_default_fallback"
+    enable_fallback_prediction: True

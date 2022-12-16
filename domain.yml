@@ -1,0 +1,63 @@
+version: "3.0"
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: false
+intents:
+  - goodbye
+  - greet
+  - weather
+  - whoyouare
+  - whatyoucando
+  - deny
+  - stop
+  - affirm
+  - info_date
+  - info_address
+entities:
+  - address
+  - date-time
+slots:
+  address:
+    type: text
+    influence_conversation: false
+    mappings:
+      - entity: address
+        type: from_entity
+  date-time:
+    type: text
+    influence_conversation: false
+    mappings:
+      - entity: date-time
+        type: from_entity
+responses:
+  utter_greet:
+    - text: 你好
+  utter_goodbye:
+    - text: 再见！
+  utter_ask_address:
+    - text: 想查询哪里的天气呢？
+  utter_ask_date-time:
+    - text: 想查询什么时候的天气呢？
+  utter_ask_continue:
+    - text: 是否要继续？
+  utter_whoyouare:
+    - text: 你好，我是Silly，一个专注天气预报的对话机器人。
+  utter_whatyoucando:
+    - text: 我能帮你查找中国大陆地区城市级别的当下和未来两天的天气情况。
+
+actions:
+  - utter_ask_address
+  - utter_ask_date-time
+  - utter_goodbye
+  - utter_greet
+  - utter_ask_continue
+  - action_default_fallback
+  - utter_whoyouare
+  - utter_whatyoucando
+  - action_weather_form_submit
+forms:
+  weather_form:
+    ignored_intents: []
+    required_slots:
+      - address
+      - date-time

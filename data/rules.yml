@@ -1,0 +1,41 @@
+version: "3.0"
+rules:
+  - rule: activate weather form
+    steps:
+      - intent: weather
+      - action: weather_form
+      - active_loop: weather_form
+
+  - rule: Submit form
+    condition:
+      # Condition that form is active.
+      - active_loop: weather_form
+    steps:
+      - action: weather_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      # The action we want to run when the form is submitted.
+      - action: action_weather_form_submit
+      - action: action_deactivate_loop
+
+  - rule: goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: greet
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - rule: whoyouare
+    steps:
+      - intent: whoyouare
+      - action: utter_whoyouare
+
+  - rule: whatyoucando
+    steps:
+      - intent: whatyoucando
+      - action: utter_whatyoucando
+
